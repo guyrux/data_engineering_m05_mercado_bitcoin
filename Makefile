@@ -17,3 +17,6 @@ ci-setup:
 
 ci-test:
 	pipenv run python -m pytest
+
+ci-deploy:
+	pipenv run zappa update $(stage) || pipenv run zappa deploy $(stage)
