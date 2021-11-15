@@ -1,0 +1,29 @@
+{
+    "production": {
+        "app_function": "mercado_bitcoin.lambda_function",
+        "aws_region": "us-west-2",
+        "project_name": "suto-mercado-bitcoin",
+        "runtime": "python3.9",
+        "s3_bucket": "zappa-s3-suto-mercado-bitcoin",
+        "environment_variables": {"STAGE": "production"},
+        "events": [
+            {
+                "function": "mercado_bitcoin.lambda_function.lambda_handler",
+                "expression": "rate(1 minute)"
+            }
+        ],
+        "memory_size": 128,
+        "apigateway_enabled": false
+    },
+    "development": {
+        "extends": "production",
+        "debug": true,
+        "environment_variables": {"STAGE": "development"},
+        "events": [
+            {
+                "function": "mercado_bitcoin.lambda_function.lambda_handler",
+                "expression": "rate(60 minutes)"
+            }
+        ]
+    }
+}
