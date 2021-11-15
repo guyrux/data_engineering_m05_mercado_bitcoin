@@ -3,7 +3,7 @@ clean:
 
 init: clean
 	pip install pipenv
-	pipenv install
+	pipenv install --dev
 	pre-commit install
 
 test:
@@ -13,7 +13,7 @@ test:
 # CI/CD
 ci-setup:
 	pip install pipenv
-	pipenv install
+	pipenv install --dev
 
 ci-test:
 	pipenv run python -m pytest
